@@ -9,6 +9,7 @@ MAX_TITLE_LENGTH = 256
 
 
 class Category(PublishedModel):
+    """Модель категории для публикаций."""
     title = models.CharField(
         max_length=MAX_TITLE_LENGTH,
         verbose_name='Заголовок'
@@ -30,7 +31,8 @@ class Category(PublishedModel):
 
 
 class Location(PublishedModel):
-    name = models.CharField(
+    """Модель местоположения для публикаций."""
+        name = models.CharField(
         max_length=MAX_TITLE_LENGTH,
         verbose_name='Название места'
     )
@@ -44,6 +46,7 @@ class Location(PublishedModel):
 
 
 class Post(PublishedModel):
+    """Модель публикации в блоге."""
     title = models.CharField(
         max_length=MAX_TITLE_LENGTH,
         verbose_name='Заголовок'
@@ -77,9 +80,10 @@ class Post(PublishedModel):
     )
     objects = PostManager()
 
-    class Meta:
-        verbose_name = 'публикация'
-        verbose_name_plural = 'Публикации'
+     class Meta:
+            verbose_name = 'публикация'
+            verbose_name_plural = 'Публикации'
+            ordering = ('-pub_date',)
 
     def __str__(self):
         return self.title
