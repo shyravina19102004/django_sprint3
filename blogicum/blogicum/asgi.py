@@ -1,5 +1,9 @@
-import os
+"""
+ASGI конфигурация для проекта blogicum.
 
+Открывает доступ к асинхронному серверу.
+"""
+import os
 from django.core.asgi import get_asgi_application
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'blogicum.settings')

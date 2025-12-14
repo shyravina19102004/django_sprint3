@@ -10,6 +10,7 @@ MAX_TITLE_LENGTH = 256
 
 class Category(PublishedModel):
     """Модель категории для публикаций."""
+
     title = models.CharField(
         max_length=MAX_TITLE_LENGTH,
         verbose_name='Заголовок'
@@ -18,7 +19,7 @@ class Category(PublishedModel):
     slug = models.SlugField(
         verbose_name='Идентификатор',
         help_text='Идентификатор страницы для URL; '
-        'разрешены символы латиницы, цифры, дефис и подчёркивание.',
+                  'разрешены символы латиницы, цифры, дефис и подчёркивание.',
         unique=True
     )
 
@@ -27,12 +28,14 @@ class Category(PublishedModel):
         verbose_name_plural = 'Категории'
 
     def __str__(self):
+        """Строковое представление категории."""
         return self.title
 
 
 class Location(PublishedModel):
     """Модель местоположения для публикаций."""
-        name = models.CharField(
+
+    name = models.CharField(
         max_length=MAX_TITLE_LENGTH,
         verbose_name='Название места'
     )
@@ -42,11 +45,13 @@ class Location(PublishedModel):
         verbose_name_plural = 'Местоположения'
 
     def __str__(self):
+        """Строковое представление местоположения."""
         return self.name
 
 
 class Post(PublishedModel):
     """Модель публикации в блоге."""
+
     title = models.CharField(
         max_length=MAX_TITLE_LENGTH,
         verbose_name='Заголовок'
@@ -55,7 +60,7 @@ class Post(PublishedModel):
     pub_date = models.DateTimeField(
         verbose_name='Дата и время публикации',
         help_text='Если установить дату и время в будущем — '
-        'можно делать отложенные публикации.'
+                  'можно делать отложенные публикации.'
     )
     author = models.ForeignKey(
         User,
@@ -80,10 +85,11 @@ class Post(PublishedModel):
     )
     objects = PostManager()
 
-     class Meta:
-            verbose_name = 'публикация'
-            verbose_name_plural = 'Публикации'
-            ordering = ('-pub_date',)
+    class Meta:
+        verbose_name = 'публикация'
+        verbose_name_plural = 'Публикации'
+        ordering = ('-pub_date',)
 
     def __str__(self):
+        """Строковое представление публикации."""
         return self.title
